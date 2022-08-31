@@ -19,9 +19,22 @@ public class SegmentNode
 		_point2 = pt2;
 	}
 
+	/**
+	 * Compares two SegmentNodes to see if they share the same points 
+	 */
 	@Override
 	public boolean equals(Object obj)
 	{
-		// TODO
+		if (obj == null) return false;
+		if (!(obj instanceof SegmentNode)) return false;
+		
+		SegmentNode that = (SegmentNode)obj;
+		
+		if((_point1.equals(that.getPoint1()) && _point2.equals(that.getPoint2())) || 
+				(_point1.equals(that.getPoint2()) && _point2.equals(that.getPoint1()))) {
+			return true;
+		}
+		
+		else return false;
 	}
 }
