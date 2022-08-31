@@ -43,21 +43,43 @@ public class PointNode
 		_y = y;
 	}
 
+	/**
+	 * Returns the hash code of this object.
+	 * @return the hash code of this object
+	 */
 	@Override
 	public int hashCode()
 	{
 		return Double.valueOf(_x).hashCode() + Double.valueOf(_y).hashCode();
 	}
 
+	/**
+	 * Checks whether a given PointNode is equal to this PointNode. Returns false if given a non-PointNode or if
+	 * any of its contents do not match.
+	 * @param obj - object to check
+	 * @return whether the PointNodes are equal
+	 */
 	@Override
 	public boolean equals(Object obj)
 	{
-		// TODO
+		if (obj == null) { return false; }
+		if (!obj instanceof PointNode) { return false; } 
+		
+		if (!obj.getX() == _x) { return false; }
+		if (!obj.getY() == _y) { return false; }
+		if (!obj.getName().equals(_name)) { return false; }
+		
+		return true;
 	}
 
+	/**
+	 * Returns a string version of the PointNode as:
+	 * name: (x, y)
+	 * @return string version of this object
+	 */
     @Override
     public String toString()
     {
-		// TODO
+		return _name + ": (" + _x + ", " + _y + ")";
 	}
 }
