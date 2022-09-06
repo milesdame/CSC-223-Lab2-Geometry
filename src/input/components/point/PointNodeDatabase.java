@@ -1,42 +1,127 @@
+/**
+ * A database containing PointNode objects.
+ * 
+ */
+
 package input.components.point;
 
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 public class PointNodeDatabase {
-	protected Set<PointNode> points;
 	
+	/**
+	 * The set that underlies the database.
+	 */
+	protected LinkedHashSet<PointNode> _set;
+	
+	/**
+	 * Creates an empty PointNodeDatabase.
+	 */
 	public PointNodeDatabase() {
-		//TODO
+		_set = new LinkedHashSet<PointNode>();
 	}
 	
-	public PointNodeDatabase(List<PointNode>) {
-		//TODO
+	/**
+	 * Creates a PointNodeDatabase that contains all elements contained in the given list, in order.
+	 * @param list - the list to initialize the database with
+	 */
+	public PointNodeDatabase(List<PointNode> list) {
+		_set = new LinkedHashSet<PointNode>(list);
 	}
 	
+	/**
+	 * Adds the given PointNode to the end of this database.
+	 * @param point - the point to add
+	 */
 	public void put(PointNode point) {
-		//TODO
+		_set.add(point); 
 	}
 	
+	/**
+	 * Checks whether the given point is an element of this database.
+	 * @param point
+	 * @return
+	 */
 	public boolean contains(PointNode point) {
-		//TODO
+		return _set.contains(point);
 	}
 	
+	/**
+	 * Checks whether the database contains a PointNode that has the indicated x and y values.
+	 * @param x, the value of x that should match with the point to search for
+	 * @param y, the value of y that should match with the point to search for
+	 * @return whether a PointNode exists in the database that matches the given x and y
+	 */
 	public boolean contains(double x, double y) {
-		//TODO
+		Iterator<PointNode> itr = _set.iterator(); // probably wrong. ik this should probably be using hash codes of some sort.
+		while (itr.hasNext()) {
+			
+			PointNode next = (PointNode)itr.next();
+			
+			if (next.getX() == x && next.getY() == y) {
+				return true;
+			}
+		}	
+		return false;
 	}
 	
+	/**
+	 * Gets the name of a given point in the database.
+	 * @param point - the point to get the name of 
+	 * @return the name of the point
+	 */
 	public String getName(PointNode point) {
-		//TODO
+		return point.getName(); // also probably wrong for same reasons as above
 	}
 	
+	/**
+	 * Gets the name of a point in the database with the given x and y values. 
+	 * 
+	 * @param x, the value of x that should match with the point to search for
+	 * @param y, the value of y that should match with the point to search for
+	 * @return the name of the point, if contained in the database. null if it is not contained
+	 */
 	public String getName(double x, double y) {
-		//TODO
+		Iterator<PointNode> itr = _set.iterator(); // probably wrong?? also
+		while (itr.hasNext()) {
+			
+			PointNode next = (PointNode)itr.next();
+			
+			if (next.getX() == x && next.getY() == y) {
+				return next.getName();
+			}
+		}	
+		return null;
 	}
 	
+	/**
+	 * Gets the given point.
+	 * @param point - the point to get
+	 * @return the point
+	 */
 	public PointNode getPoint(PointNode point) {
-		//TODO
+		return point; // stilllll probably wrong
 	}
 	
+	/**
+	 * Gets the point with the given x and y values.
+	 * @param x, the value of x that should match with the point to search for
+	 * @param y, the value of y that should match with the point to search for
+	 * @return the point
+	 */
 	public PointNode getPoint(double x, double y) {
-		//TODO
+		Iterator<PointNode> itr = _set.iterator(); // probably wrong?? also
+		while (itr.hasNext()) {
+			
+			PointNode next = (PointNode)itr.next();
+			
+			if (next.getX() == x && next.getY() == y) {
+				return next;
+			}
+		}	
+		return null;
 	}
 
 }

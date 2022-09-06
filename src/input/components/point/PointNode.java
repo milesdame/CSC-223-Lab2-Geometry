@@ -7,14 +7,27 @@ import utilities.math.MathUtilities;
  */
 public class PointNode
 {
+	/**
+	 * A constant string to be used to create a PointNode
+	 * when no name is given.
+	 */
 	protected static final String ANONYMOUS = "__UNNAMED";
 
+	/**
+	 * The x value of this point.
+	 */
 	protected double _x;
 	public double getX() { return this._x; }
 
+	/**
+	 * The y value of this point.
+	 */
 	protected double _y; 
 	public double getY() { return this._y; }
 
+	/**
+	 * The name of this point.
+	 */
 	protected String _name; 
 	public String getName() { return _name; }
 
@@ -55,7 +68,7 @@ public class PointNode
 
 	/**
 	 * Checks whether a given PointNode is equal to this PointNode. Returns false if given a non-PointNode or if
-	 * any of its contents do not match.
+	 * either of its x and y values do not match. Does not check whether the names or equal.
 	 * @param obj - object to check
 	 * @return whether the PointNodes are equal
 	 */
@@ -63,11 +76,12 @@ public class PointNode
 	public boolean equals(Object obj)
 	{
 		if (obj == null) { return false; }
-		if (!obj instanceof PointNode) { return false; } 
+		if (!(obj instanceof PointNode)) { return false; } 
 		
-		if (!obj.getX() == _x) { return false; }
-		if (!obj.getY() == _y) { return false; }
-		if (!obj.getName().equals(_name)) { return false; }
+		PointNode that = (PointNode)obj;
+		
+		if (!(that.getX() == _x)) { return false; }
+		if (!(that.getY() == _y)) { return false; }
 		
 		return true;
 	}
