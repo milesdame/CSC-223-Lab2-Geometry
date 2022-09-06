@@ -6,6 +6,10 @@ import input.components.point.PointNode;
 
 public class PointNodeDatabaseTest {
 
+	/**
+	 * contains(point)
+	 * - 
+	 */
 	@Test
 	void testContains_good() {
 		

@@ -80,8 +80,8 @@ public class PointNode
 		
 		PointNode that = (PointNode)obj;
 		
-		if (!(that.getX() == _x)) { return false; }
-		if (!(that.getY() == _y)) { return false; }
+		if (!(MathUtilities.doubleEquals(that.getX(), _x))) { return false; }
+		if (!(MathUtilities.doubleEquals(that.getY(), _y))) { return false; }
 		
 		return true;
 	}
