@@ -24,15 +24,6 @@ import java.util.Set;
 
 import input.components.point.PointNode;
 
-/**
- * A SegmentNodeDatabase is built upon an adjacency list that represents a geometry figure.
- * The adjacency list is a LinkedHashMap.
- * Each entry in this map is:
- * - key = a PointNode that represents a vertex of the figure
- * - value = a set of PointNodes that represents a directed edge from the key node to each node in the set
- *
- * An undirected edge exists between two points in the adjacency list if both points exist as a key and they exist in each other's value sets.
- */
 public class SegmentNodeDatabase {
 
 	protected LinkedHashMap<PointNode, Set<PointNode>> _adjLists;
