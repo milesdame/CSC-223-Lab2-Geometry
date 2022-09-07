@@ -1,12 +1,56 @@
 package input.components.segment;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.Test;
 
 import input.components.point.PointNode;
 
-public class SegmentNodeTest {
+public class SegmentNodeTest
+{
+	/*
+	 * null in for p1
+	 * null in for p2
+	 * null in for both
+	 * normal PointNode in for both
+	 */
+	@Test
+	void testSegmentNode_nullp1()
+	{
+		PointNode point = new PointNode(3.0, 4.0);
+		SegmentNode sn = new SegmentNode(null, point);
+		
+		assertEquals(null, sn.getPoint1());
+		assertEquals(point, sn.getPoint2());
+	}
+	@Test
+	void testSegmentNode_nullp2()
+	{
+		PointNode point = new PointNode(3.0, 4.0);
+		SegmentNode sn = new SegmentNode(point, null);
+		
+		assertEquals(point, sn.getPoint1());
+		assertEquals(null, sn.getPoint2());
+	}
+	@Test
+	void testSegmentNode_nullboth()
+	{		
+		SegmentNode sn = new SegmentNode(null, null);
+		
+		assertEquals(null, sn.getPoint1());
+		assertEquals(null, sn.getPoint2());
+	}
+	@Test
+	void testSegmentNode_normal()
+	{
+		PointNode point1 = new PointNode(3.0, 4.0);
+		PointNode point2 = new PointNode(1000.8, 3.0987);
+		SegmentNode sn = new SegmentNode(point1, point2);
+		
+		assertEquals(point1, sn.getPoint1());
+		assertEquals(point2, sn.getPoint2());
+	}
+	
 	/**
 	 * equals
 	 * - is null

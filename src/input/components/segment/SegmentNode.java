@@ -13,6 +13,11 @@ public class SegmentNode
 	public PointNode getPoint1() { return _point1; }
 	public PointNode getPoint2() { return _point2; }
 	
+	/**
+	 * constructor
+	 * @param pt1 The first PointNode of the segment
+	 * @param pt2 The second PointNode of the segment
+	 */
 	public SegmentNode(PointNode pt1, PointNode pt2)
 	{
 		_point1 = pt1;
