@@ -3,6 +3,8 @@
  * 
  */
 
+// ????????EPSILON FOR DOUBLE EQUALITY?????????
+
 package input.components.point;
 
 import java.util.Iterator;
@@ -123,5 +125,4 @@ public class PointNodeDatabase {
 		}	
 		return null;
 	}
-
 }
