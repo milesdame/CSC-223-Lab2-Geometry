@@ -41,6 +41,28 @@ class SegmentNodeDatabaseTest
     	
     	return db;
     }
+    
+    /*
+     * default constructor
+     * just one test, check it fills _adjLists
+     * 
+     */
+    
+    /*
+     * constructor, linkedhashmap
+     * normal, empty in
+     * normal, normal in
+     * empty, empty in
+     * empty, normal in
+     * check it properly fills _adjLists
+     */
+    
+    /*
+     * numUndirectedEdges
+     * empty
+     * after adding one
+     * after adding another
+     */
 
 	@Test
 	void testNumUndirectedEdges()
@@ -49,4 +71,50 @@ class SegmentNodeDatabaseTest
 		
 		assertEquals(10, db.numUndirectedEdges());
 	}
+	
+	/*
+	 * addDirectedEdge - private, no test?
+	 * 
+	 */
+	
+	/*
+	 * addUndirectedEdge
+	 * new, new
+	 * new, already in
+	 * already in, new
+	 * already in, already in
+	 * null, already in
+	 * null, new
+	 * already in, null
+	 * new, null
+	 */
+	
+	/*
+	 * addAdjecencyList -
+	 * point in, empty
+	 * point in, not empty no double
+	 * point in, not empty double
+	 * point in , null
+	 * point not in, empty
+	 * point not in, not empty no double
+	 * point not in, not empty double
+	 * point not in , null
+	 * null, empty
+	 * null, not empty no double
+	 * null, not empty double
+	 * null, null
+	 */
+	
+	/*
+	 * asSegmentList
+	 * empty
+	 * not empty
+	 */
+	
+	/*
+	 * asUniqueSegmentList
+	 * empty
+	 * not empty all unique
+	 * not empty some double
+	 */
 }
