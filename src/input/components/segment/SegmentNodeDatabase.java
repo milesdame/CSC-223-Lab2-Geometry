@@ -75,9 +75,11 @@ public class SegmentNodeDatabase {
 	 * @param n2 - the second PointNode
 	 */
 	private void addDirectedEdge(PointNode n1, PointNode n2) {
-		Set<PointNode> pointSet = new LinkedHashSet<PointNode>();
-		pointSet.add(n2);
-		_adjLists.put(n2, pointSet);
+		if (!n1.equals(n2)) {
+			Set<PointNode> pointSet = new LinkedHashSet<PointNode>();
+			pointSet.add(n2);
+			_adjLists.put(n2, pointSet);
+		}
 	}
 
 	/**
@@ -87,14 +89,16 @@ public class SegmentNodeDatabase {
 	 * @param n2 - the second PointNode (though order does not matter)
 	 */
 	public void addUndirectedEdge(PointNode n1, PointNode n2) {
-		if (_adjLists.containsKey(n1) == true) { _adjLists.get(n1).add(n2);}
-		else {
-			this.addDirectedEdge(n1, n2);
-		}
-
-		if (_adjLists.containsKey(n2) == true) { _adjLists.get(n2).add(n1);}
-		else {
-			this.addDirectedEdge(n2, n1);
+		if (!n1.equals(n2)) {
+			if (_adjLists.containsKey(n1) == true) { _adjLists.get(n1).add(n2);}
+			else {
+				this.addDirectedEdge(n1, n2);
+			}
+	
+			if (_adjLists.containsKey(n2) == true) { _adjLists.get(n2).add(n1);}
+			else {
+				this.addDirectedEdge(n2, n1);
+			}
 		}
 	}
 
