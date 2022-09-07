@@ -54,6 +54,25 @@ class SegmentNodeDatabaseTest
     	return db;
     }
 
+    public SegmentNodeDatabase babyBuild()
+    {
+    	//      A                                 
+    	//     / \                                
+    	//    B___C                               
+		//
+    	PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	  	
+    	db.addUndirectedEdge(a, b);
+    	db.addUndirectedEdge(a, c);
+    	db.addUndirectedEdge(b, c);
+    	
+    	return db;
+    }    
+    
     
     
     /*
@@ -124,6 +143,12 @@ class SegmentNodeDatabaseTest
     }
     @Test
     void testSegmentNodeDatabaseLinkedHashMap_nullnull()
+    {
+    	
+    }
+    @Test
+    void
+    testSegmentNodeDatabaseLinkedHashMap_nullmapin()
     {
     	
     }
