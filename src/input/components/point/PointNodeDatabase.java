@@ -1,9 +1,7 @@
 /**
  * A database containing PointNode objects.
- * 
+ * @author Sophie Ngo
  */
-
-// ????????EPSILON FOR DOUBLE EQUALITY?????????
 
 package input.components.point;
 
