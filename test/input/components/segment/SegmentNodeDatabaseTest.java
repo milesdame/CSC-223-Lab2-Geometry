@@ -3,11 +3,23 @@ package input.components.segment;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Collection;
 
 import input.components.point.PointNode;
 
+
 class SegmentNodeDatabaseTest
 {
+	private PointNode pt00 = new PointNode(0.0, 0.0);
+	private PointNode pt01 = new PointNode(0.0, 1.0);
+	private PointNode pt11 = new PointNode(1.0, 1.0);
+	private PointNode pt10 = new PointNode(1.0, 0.0);
+	
     public SegmentNodeDatabase build()
     {
     	//      A                                 
@@ -41,6 +53,8 @@ class SegmentNodeDatabaseTest
     	
     	return db;
     }
+
+    
     
     /*
      * default constructor
@@ -287,6 +301,8 @@ class SegmentNodeDatabaseTest
 	void testAddAdjacencyList_pointinempty()
 	{
 		
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
+		
 	}
 	@Test
 	void testAddAdjacencyList_pointinunique()
@@ -350,14 +366,36 @@ class SegmentNodeDatabaseTest
 	 * not empty
 	 */
 	@Test
-	void testAsSegmentList_empty()
-	{
-		
-	}
-	@Test
 	void testAsSegmentList_stuffin()
 	{
 		
+	}
+	
+	@Test
+	void testAsSegmentList_empty() {
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
+		
+		List<SegmentNode> expected = new ArrayList<SegmentNode>(); 
+		List<SegmentNode> actual = db.asSegmentList();
+		
+		assertSame(expected, actual);
+	}
+	
+	@Test
+	void testAsSegmentList_nonEmpty() {
+//		PointNode pt1 = new PointNode(0.0, 0.0);
+//		PointNode pt2 = new PointNode(1.0, 1.0);
+//		PointNode pt3 = new PointNode(2.0, 2.0);
+//		Set<PointNode> pointSet = new LinkedHashSet<PointNode>();
+//		pointSet.add(pt2);
+//		pointSet.add(pt3);
+//		LinkedHashMap<PointNode, Set<PointNode>> map = new LinkedHashMap<PointNode, Set<PointNode>>();
+//		SegmentNodeDatabase db = new SegmentNodeDatabase(map);
+//		
+//		ArrayList<SegmentNode> expected = new ArrayList<SegmentNode>(); 
+//		ArrayList<SegmentNode> actual = db.asSegmentList();
+//		
+//		assertSame(expected, actual);
 	}
 	
 	/*
@@ -366,6 +404,7 @@ class SegmentNodeDatabaseTest
 	 * not empty all unique
 	 * not empty some double
 	 */
+
 	@Test
 	void testAsUniqueSegmentList_empty()
 	{
@@ -379,6 +418,16 @@ class SegmentNodeDatabaseTest
 	@Test
 	void testAsUniqueSegmentList_redundancy()
 	{
+		
+	}
+	
+	@Test
+	void testAsUniqueSegmentList_nonEmptyAllUnique() {
+		
+	}
+	
+	@Test
+	void testAsUniqueSegmentList_nonEmptyNonUnique() {
 		
 	}
 }
