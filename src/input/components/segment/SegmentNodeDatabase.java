@@ -6,6 +6,9 @@
  * - value = a set of PointNodes that represents a directed edge from the key node to each node in the set
  *
  * An undirected edge exists between two points in the adjacency list if both points exist as a key and they exist in each other's value sets.
+ * 
+ * @author Miles Dame, Sophie Ngo
+ * @date September 9, 2022
  */
 package input.components.segment;
 
@@ -21,6 +24,15 @@ import java.util.Set;
 
 import input.components.point.PointNode;
 
+/**
+ * A SegmentNodeDatabase is built upon an adjacency list that represents a geometry figure.
+ * The adjacency list is a LinkedHashMap.
+ * Each entry in this map is:
+ * - key = a PointNode that represents a vertex of the figure
+ * - value = a set of PointNodes that represents a directed edge from the key node to each node in the set
+ *
+ * An undirected edge exists between two points in the adjacency list if both points exist as a key and they exist in each other's value sets.
+ */
 public class SegmentNodeDatabase {
 
 	protected LinkedHashMap<PointNode, Set<PointNode>> _adjLists;
@@ -94,7 +106,11 @@ public class SegmentNodeDatabase {
 	public void addAdjacencyList(PointNode point, Set<PointNode> list) {
 		_adjLists.putIfAbsent(point, list);
 	}
-
+	
+	/**
+	 * Creates a list of all segments in the database
+	 * @return a list of all segments in the database
+	 */
 	public List<SegmentNode> asSegmentList() {
 		//Create an ArrayList to store the SegmentNodes
 		ArrayList<SegmentNode> list = new ArrayList();
@@ -115,7 +131,11 @@ public class SegmentNodeDatabase {
 		return list;
 
 	}
-
+	
+	/**
+	 * Creates a list of all segments in the database while checking to make sure there are no duplicates
+	 * @return a list of all unique segments in the database
+	 */
 	public List<SegmentNode> asUniqueSegmentList() {
 		//Create an ArrayList to store the SegmentNodes
 		LinkedHashSet<SegmentNode> set = new LinkedHashSet();
