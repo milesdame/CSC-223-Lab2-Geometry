@@ -1,7 +1,19 @@
+/**
+* Write a succinct, meaningful description of the class here. You should avoid wordiness
+* and redundancy. If necessary, additional paragraphs should be preceded by <p>,
+* the html tag for a new paragraph.
+*
+* <p>Bugs: (a list of bugs and / or other problems)
+*
+* @author Miles Dame
+*/
+
 package input.components.segment;
 
 import java.util.AbstractSet;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -48,7 +60,7 @@ public class SegmentNodeDatabase {
 	
 	/**
 	 * 
-	 * @param n1
+	 * @param n1 
 	 * @param n2
 	 */
 	public void addUndirectedEdge(PointNode n1, PointNode n2) {
@@ -73,11 +85,46 @@ public class SegmentNodeDatabase {
 	}
 	
 	public List<SegmentNode> asSegmentList() {
-		// TODO
+		//Create an ArrayList to store the SegmentNodes
+		ArrayList<SegmentNode> list = new ArrayList();
+		
+		// Loop through each key 
+		for(Map.Entry<PointNode, Set<PointNode>> entry : _adjLists.entrySet()) {
+			Set<PointNode> values = entry.getValue();
+			
+			// For each key iterate through the values and add a segment with that key and the current value
+			Iterator<PointNode> itr = values.iterator(); 
+			while (itr.hasNext()) {
+				PointNode point = (PointNode)itr.next();
+				SegmentNode node = new SegmentNode(entry.getKey(), point);
+				list.add(node);
+			}	
+		}
+		
+		return list;
+		
 	}
 	
 	public List<SegmentNode> asUniqueSegmentList() {
-		// TODO
+		//Create an ArrayList to store the SegmentNodes
+		LinkedHashSet<SegmentNode> set = new LinkedHashSet();
+				
+		// Loop through each key 
+		for(Map.Entry<PointNode, Set<PointNode>> entry : _adjLists.entrySet()) {
+			Set<PointNode> values = entry.getValue();
+			
+			// For each key iterate through the values and add a segment with that key and the current value
+			Iterator<PointNode> itr = values.iterator(); 
+			while (itr.hasNext()) {
+				PointNode point = (PointNode)itr.next();
+				SegmentNode node = new SegmentNode(entry.getKey(), point);
+				set.add(node);
+			}	
+		}
+		
+		ArrayList<SegmentNode> list = new ArrayList(set);
+		return list;
+		
 	}
 
 }
