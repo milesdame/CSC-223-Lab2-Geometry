@@ -3,6 +3,8 @@
  * 
  */
 
+// ????????EPSILON FOR DOUBLE EQUALITY?????????
+
 package input.components.point;
 
 import java.util.Iterator;
@@ -21,6 +23,7 @@ public class PointNodeDatabase {
 	 */
 	public PointNodeDatabase() {
 		_set = new LinkedHashSet<PointNode>();
+		
 	}
 	
 	/**
@@ -55,7 +58,7 @@ public class PointNodeDatabase {
 	 * @return whether a PointNode exists in the database that matches the given x and y
 	 */
 	public boolean contains(double x, double y) {
-		Iterator<PointNode> itr = _set.iterator(); // probably wrong. ik this should probably be using hash codes of some sort.
+		Iterator<PointNode> itr = _set.iterator(); 
 		while (itr.hasNext()) {
 			
 			PointNode next = (PointNode)itr.next();
@@ -84,7 +87,7 @@ public class PointNodeDatabase {
 	 * @return the name of the point, if contained in the database. null if it is not contained
 	 */
 	public String getName(double x, double y) {
-		Iterator<PointNode> itr = _set.iterator(); // probably wrong?? also
+		Iterator<PointNode> itr = _set.iterator(); 
 		while (itr.hasNext()) {
 			
 			PointNode next = (PointNode)itr.next();
@@ -102,7 +105,7 @@ public class PointNodeDatabase {
 	 * @return the point
 	 */
 	public PointNode getPoint(PointNode point) {
-		return point; // stilllll probably wrong
+		return point; 
 	}
 	
 	/**
@@ -112,7 +115,7 @@ public class PointNodeDatabase {
 	 * @return the point
 	 */
 	public PointNode getPoint(double x, double y) {
-		Iterator<PointNode> itr = _set.iterator(); // probably wrong?? also
+		Iterator<PointNode> itr = _set.iterator(); 
 		while (itr.hasNext()) {
 			
 			PointNode next = (PointNode)itr.next();
@@ -123,5 +126,4 @@ public class PointNodeDatabase {
 		}	
 		return null;
 	}
-
 }
