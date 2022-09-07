@@ -1,7 +1,9 @@
 package input.components.segment;
 
+import java.util.AbstractSet;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,16 +35,41 @@ public class SegmentNodeDatabase {
 		// TODO
 	}
 	
+	/**
+	 * 
+	 * @param n1
+	 * @param n2
+	 */
 	private void addDirectedEdge(PointNode n1, PointNode n2) {
-		// TODO
+		Set<PointNode> pointSet = new LinkedHashSet<PointNode>();
+		pointSet.add(n2);
+		_adjLists.put(n2, pointSet);
 	}
 	
+	/**
+	 * 
+	 * @param n1
+	 * @param n2
+	 */
 	public void addUndirectedEdge(PointNode n1, PointNode n2) {
-		// TODO
+		if (_adjLists.containsKey(n1) == true) { _adjLists.get(n1).add(n2);}
+		else {
+			this.addDirectedEdge(n1, n2);
+		}
+		
+		if (_adjLists.containsKey(n2) == true) { _adjLists.get(n2).add(n1);} 
+		else {
+			this.addDirectedEdge(n2, n1);
+		}
 	}
 	
-	public void addAdjacencyList(PointNode n1, List<PointNode>) {
-		// TODO
+	/**
+	 * Takes a given point and a set of its connecting points and adds it to the adjacency list if it does not already exist
+	 * @param point
+	 * @param list - list of points that are connected to point
+	 */
+	public void addAdjacencyList(PointNode point, Set<PointNode> list) {
+		_adjLists.putIfAbsent(point, list);
 	}
 	
 	public List<SegmentNode> asSegmentList() {
@@ -53,76 +80,5 @@ public class SegmentNodeDatabase {
 		// TODO
 	}
 
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean containsKey(Object key) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean containsValue(Object value) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Set<PointNode> get(Object key) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<PointNode> put(PointNode key, Set<PointNode> value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<PointNode> remove(Object key) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void putAll(Map<? extends PointNode, ? extends Set<PointNode>> m) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Set<PointNode> keySet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection<Set<PointNode>> values() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<Entry<PointNode, Set<PointNode>>> entrySet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
 
