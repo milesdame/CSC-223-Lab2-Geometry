@@ -47,15 +47,72 @@ class SegmentNodeDatabaseTest
      * just one test, check it fills _adjLists
      * 
      */
+    @Test
+    void testSegmentNodeDatabase()
+    {
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	assertEquals(0, db._adjLists.size());
+    }
     
     /*
-     * constructor, linkedhashmap
+     * constructor, linkedhashmap - probably not all of these are necessary
      * normal, empty in
      * normal, normal in
+     * normal null
      * empty, empty in
      * empty, normal in
+     * empty null
+     * null normal
+     * null empty
+     * null null
      * check it properly fills _adjLists
      */
+    @Test
+    void testSegmentNodeDatabaseLinkedHashMap_normalempty()
+    {
+    	
+    }
+    @Test
+    void testSegmentNodeDatabaseLinkedHashMap_normalnormal()
+    {
+    	
+    }
+    @Test
+    void testSegmentNodeDatabaseLinkedHashMap_normalnull()
+    {
+    	
+    }
+    @Test
+    void testSegmentNodeDatabaseLinkedHashMap_emptyempty()
+    {
+    	
+    }
+    @Test
+    void testSegmentNodeDatabaseLinkedHashMap_emptynormal()
+    {
+    	
+    }
+    @Test
+    void testSegmentNodeDatabaseLinkedHashMap_emptynull()
+    {
+    	
+    }
+    @Test
+    void testSegmentNodeDatabaseLinkedHashMap_nullempty()
+    {
+    	
+    }
+    @Test
+    void testSegmentNodeDatabaseLinkedHashMap_nullnormal()
+    {
+    	
+    }
+    @Test
+    void testSegmentNodeDatabaseLinkedHashMap_nullnull()
+    {
+    	
+    }
     
     /*
      * numUndirectedEdges
@@ -63,34 +120,156 @@ class SegmentNodeDatabaseTest
      * after adding one
      * after adding another
      */
-
+    @Test
+    void testNumUndirectedEdges_empty()
+    {
+    	
+    }
+    
 	@Test
-	void testNumUndirectedEdges()
+	void testNumUndirectedEdges_stuffin()
 	{
 		SegmentNodeDatabase db = build();
 		
 		assertEquals(10, db.numUndirectedEdges());
 	}
 	
-	/*
-	 * addDirectedEdge - private, no test?
-	 * 
-	 */
+	@Test
+	void testNumUndirectedEdges_afteradding()
+	{
+		
+	}
 	
 	/*
-	 * addUndirectedEdge
+	 * addDirectedEdge
+	 * same object
 	 * new, new
 	 * new, already in
+	 * new, null
 	 * already in, new
 	 * already in, already in
-	 * null, already in
-	 * null, new
 	 * already in, null
-	 * new, null
+	 * null, new
+	 * null, already in
+	 * null null
 	 */
+	@Test
+	void testAddDirectedEdge_newnew()
+	{
+		
+	}
+	@Test
+	void testAddDirectedEdge_newin()
+	{
+		
+	}
+	@Test
+	void testAddDirectedEdge_newnull()
+	{
+		
+	}
+	@Test
+	void testAddDirectedEdge_innew()
+	{
+		
+	}
+	@Test
+	void testAddDirectedEdge_inin()
+	{
+		
+	}
+	@Test
+	void testAddDirectedEdge_innull()
+	{
+		
+	}
+	@Test
+	void testAddDirectedEdge_nullnew()
+	{
+		
+	}
+	@Test
+	void testAddDirectedEdge_nullin()
+	{
+		
+	}
+	@Test
+	void testAddDirectedEdge_nullnull()
+	{
+		
+	}
+	@Test
+	void testAddDirectedEdge_sameforboth()
+	{
+		
+	}
 	
 	/*
-	 * addAdjecencyList -
+	 * addUndirectedEdge - prob not all necessary
+	 * new, new
+	 * new, already in
+	 * new, null
+	 * already in, new
+	 * already in, already in
+	 * already in, null
+	 * null, new
+	 * null, already in
+	 * null null
+	 * same object for both
+	 */
+	@Test
+	void testAddUndirectedEdge_newnew()
+	{
+		
+	}
+	@Test
+	void testAddUndirectedEdge_newin()
+	{
+		
+	}
+	@Test
+	void testAddUndirectedEdge_newnull()
+	{
+		
+	}
+	@Test
+	void testAddUndirectedEdge_innew()
+	{
+		
+	}
+	@Test
+	void testAddUndirectedEdge_inin()
+	{
+		
+	}
+	@Test
+	void testAddUndirectedEdge_innull()
+	{
+		
+	}
+	@Test
+	void testAddUndirectedEdge_nullnew()
+	{
+		
+	}
+	@Test
+	void testAddUndirectedEdge_nullin()
+	{
+		
+	}
+	@Test
+	void testAddUndirectedEdge_nullnull()
+	{
+		
+	}
+	@Test
+	void testAddUndirectedEdge_sameforboth()
+	{
+		
+	}
+	
+	/*
+	 * addAdjecencyList - prob not all necessary
 	 * point in, empty
 	 * point in, not empty no double
 	 * point in, not empty double
@@ -104,12 +283,82 @@ class SegmentNodeDatabaseTest
 	 * null, not empty double
 	 * null, null
 	 */
+	@Test
+	void testAddAdjacencyList_pointinempty()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_pointinunique()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_pointinredundant()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_pointinnull()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_pointnotinempty()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_pointnotinunique()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_pointnotinredundant()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_pointnotinnull()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_nullempty()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_nullunique()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_nullredundant()
+	{
+		
+	}
+	@Test
+	void testAddAdjacencyList_nullnull()
+	{
+		
+	}
 	
 	/*
 	 * asSegmentList
 	 * empty
 	 * not empty
 	 */
+	@Test
+	void testAsSegmentList_empty()
+	{
+		
+	}
+	@Test
+	void testAsSegmentList_stuffin()
+	{
+		
+	}
 	
 	/*
 	 * asUniqueSegmentList
@@ -117,4 +366,19 @@ class SegmentNodeDatabaseTest
 	 * not empty all unique
 	 * not empty some double
 	 */
+	@Test
+	void testAsUniqueSegmentList_empty()
+	{
+		
+	}
+	@Test
+	void testAsUniqueSegmentList_allunique()
+	{
+		
+	}
+	@Test
+	void testAsUniqueSegmentList_redundancy()
+	{
+		
+	}
 }
