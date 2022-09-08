@@ -72,9 +72,7 @@ class SegmentNodeDatabaseTest
     	
     	return db;
     }    
-    
-    
-    
+      
     /*
      * default constructor
      * just one test, check it fills _adjLists
@@ -162,7 +160,9 @@ class SegmentNodeDatabaseTest
     @Test
     void testNumUndirectedEdges_empty()
     {
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
     	
+    	assertEquals(0, db.numUndirectedEdges());
     }
     
 	@Test
@@ -170,13 +170,19 @@ class SegmentNodeDatabaseTest
 	{
 		SegmentNodeDatabase db = build();
 		
-		assertEquals(10, db.numUndirectedEdges());
+		assertEquals(20, db.numUndirectedEdges());
 	}
 	
 	@Test
 	void testNumUndirectedEdges_afteradding()
 	{
+		SegmentNodeDatabase db = build();
 		
+		PointNode m = new PointNode("M", 3, 3);    	  	
+		PointNode y = new PointNode("Y", 3, 3);    	  	
+    	db.addUndirectedEdge(m, y);
+    	
+    	assertEquals(22, db.numUndirectedEdges());
 	}
 	
 	

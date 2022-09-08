@@ -48,6 +48,7 @@ public class SegmentNodeDatabase {
 
 	/**
 	 * Returns the amount of undirected edges in the adjacency list.
+	 * Will be twice what it would be visually
 	 * @return int value of the total amount of undirected edges in the adj list
 	 */
 	public int numUndirectedEdges() {
