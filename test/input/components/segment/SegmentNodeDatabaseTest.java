@@ -207,7 +207,7 @@ class SegmentNodeDatabaseTest
     	SegmentNodeDatabase db = new SegmentNodeDatabase();
     	
     	// Check if db is empty
-    	assertEquals(0, db.asSegmentList().size());
+    	assertEquals(0, db.asUniqueSegmentList().size());
     	
     	// Add segment to db
     	db.addUndirectedEdge(e, x);
@@ -216,7 +216,7 @@ class SegmentNodeDatabaseTest
     	
     	// Check if segment was added
     	assertTrue(list.contains(node1));
-    	assertEquals(1, db.asSegmentList().size());
+    	assertEquals(2, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAddUndirectedEdge_newin()
@@ -232,7 +232,7 @@ class SegmentNodeDatabaseTest
     	SegmentNodeDatabase db = new SegmentNodeDatabase();
     	
     	// Check if db is empty
-    	assertEquals(0, db.asSegmentList().size());
+    	assertEquals(0, db.asUniqueSegmentList().size());
     	
     	// Add segment to db
     	db.addUndirectedEdge(a, b);
@@ -242,47 +242,194 @@ class SegmentNodeDatabaseTest
     	
     	// Check if segment was added
     	assertTrue(list.contains(node1));
-    	assertEquals(3, db.asSegmentList().size());
+    	assertEquals(3, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAddUndirectedEdge_newnull()
 	{
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segment but one point is null
+    	db.addUndirectedEdge(c, b);
+    	db.addUndirectedEdge(c, x);
+    	db.addUndirectedEdge(a, null);
+    	assertEquals(3, db.asUniqueSegmentList().size());
+    	
 	}
 	@Test
 	void testAddUndirectedEdge_innew()
 	{
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segment to db
+    	db.addUndirectedEdge(a, b);
+    	db.addUndirectedEdge(c, b);
+    	db.addUndirectedEdge(c, x);
+    	SegmentNode node1 = new SegmentNode(c, x);
+    	List<SegmentNode> list = db.asSegmentList();
+    	
+    	// Check if segment was added
+    	assertTrue(list.contains(node1));
+    	assertEquals(4, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAddUndirectedEdge_inin()
 	{
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segment to db
+    	db.addUndirectedEdge(a, b);
+    	db.addUndirectedEdge(c, e);
+    	db.addUndirectedEdge(c, e);
+    	SegmentNode node1 = new SegmentNode(e, c);
+    	List<SegmentNode> list = db.asSegmentList();
+    	
+    	// Check if segment was added
+    	assertTrue(list.contains(node1));
+    	assertEquals(4, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAddUndirectedEdge_innull()
 	{
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segment but one point is null
+    	db.addUndirectedEdge(c, b);
+    	db.addUndirectedEdge(c, x);
+    	db.addUndirectedEdge(a, null);
+    	assertEquals(3, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAddUndirectedEdge_nullnew()
 	{
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segment but one point is null
+    	db.addUndirectedEdge(c, b);
+    	db.addUndirectedEdge(c, x);
+    	db.addUndirectedEdge(null, e);
+    	assertEquals(4, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAddUndirectedEdge_nullin()
 	{
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segment but one point is null
+    	db.addUndirectedEdge(c, b);
+    	db.addUndirectedEdge(c, x);
+    	db.addUndirectedEdge(null, c);
+    	assertEquals(3, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAddUndirectedEdge_nullnull()
 	{
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segment but one point is null
+    	db.addUndirectedEdge(c, b);
+    	db.addUndirectedEdge(c, x);
+    	db.addUndirectedEdge(null, null);
+    	assertEquals(3, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAddUndirectedEdge_sameforboth()
 	{
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segment but one point is null
+    	db.addUndirectedEdge(c, b);
+    	db.addUndirectedEdge(c, x);
+    	db.addUndirectedEdge(e, e);
+    	assertEquals(3, db.asUniqueSegmentList().size());
 	}
 	
 	/*
