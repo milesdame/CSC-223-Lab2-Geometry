@@ -75,6 +75,9 @@ class SegmentNodeDatabaseTest
     
     
     
+    
+    
+      
     /*
      * default constructor
      * just one test, check it fills _adjLists
@@ -93,9 +96,6 @@ class SegmentNodeDatabaseTest
      * normal, empty in
      * normal, normal in
      * normal null
-     * empty, empty in
-     * empty, normal in
-     * empty null
      * null normal
      * null empty
      * null null
@@ -103,31 +103,19 @@ class SegmentNodeDatabaseTest
      */
     @Test
     void testSegmentNodeDatabaseLinkedHashMap_normalempty()
-    {
+    {     	
     	
     }
     @Test
     void testSegmentNodeDatabaseLinkedHashMap_normalnormal()
     {
+    	LinkedHashMap<PointNode, Set<PointNode>> lhm = LinkedHashMapNormalNormal();
+    	SegmentNodeDatabase db = new SegmentNodeDatabase(lhm);
     	
+    	assertTrue(lhm.equals(db._adjLists));
     }
     @Test
     void testSegmentNodeDatabaseLinkedHashMap_normalnull()
-    {
-    	
-    }
-    @Test
-    void testSegmentNodeDatabaseLinkedHashMap_emptyempty()
-    {
-    	
-    }
-    @Test
-    void testSegmentNodeDatabaseLinkedHashMap_emptynormal()
-    {
-    	
-    }
-    @Test
-    void testSegmentNodeDatabaseLinkedHashMap_emptynull()
     {
     	
     }
@@ -162,7 +150,9 @@ class SegmentNodeDatabaseTest
     @Test
     void testNumUndirectedEdges_empty()
     {
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
     	
+    	assertEquals(0, db.numUndirectedEdges());
     }
     
 	@Test
@@ -170,13 +160,19 @@ class SegmentNodeDatabaseTest
 	{
 		SegmentNodeDatabase db = build();
 		
-		assertEquals(10, db.numUndirectedEdges());
+		assertEquals(20, db.numUndirectedEdges());
 	}
 	
 	@Test
 	void testNumUndirectedEdges_afteradding()
 	{
+		SegmentNodeDatabase db = build();
 		
+		PointNode m = new PointNode("M", 3, 3);    	  	
+		PointNode y = new PointNode("Y", 3, 3);    	  	
+    	db.addUndirectedEdge(m, y);
+    	
+    	assertEquals(22, db.numUndirectedEdges());
 	}
 	
 	
@@ -580,4 +576,76 @@ class SegmentNodeDatabaseTest
 	void testAsUniqueSegmentList_nonEmptyNonUnique() {
 		
 	}
+	
+	
+	public LinkedHashMap<PointNode, Set<PointNode>> LinkedHashMapNormalNormal()
+	{
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+    	
+    	LinkedHashSet<PointNode> forA = new LinkedHashSet<PointNode>();
+    	forA.add(b);
+    	forA.add(c);
+    	
+    	LinkedHashMap<PointNode, Set<PointNode>> lhm = new LinkedHashMap<PointNode, Set<PointNode>>();
+    	lhm.put(a, forA);
+   	
+    	return lhm;
+   	}
+	
+	public LinkedHashMap<PointNode, Set<PointNode>> LinkedHashMapNormalEmpty()
+	{
+		PointNode a = new PointNode("A", 3, 6);
+    	
+    	LinkedHashSet<PointNode> forA = new LinkedHashSet<PointNode>();
+    	
+    	LinkedHashMap<PointNode, Set<PointNode>> lhm = new LinkedHashMap<PointNode, Set<PointNode>>();
+    	lhm.put(a, forA);
+   	
+    	return lhm;
+   	}
+	
+	public LinkedHashMap<PointNode, Set<PointNode>> LinkedHashMapNormalNull()
+	{
+		PointNode a = new PointNode("A", 3, 6);
+    	
+    	LinkedHashMap<PointNode, Set<PointNode>> lhm = new LinkedHashMap<PointNode, Set<PointNode>>();
+    	lhm.put(a, null);
+   	
+    	return lhm;
+   	}
+	
+	public LinkedHashMap<PointNode, Set<PointNode>> LinkedHashMapNullNormal()
+	{
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+    	
+    	LinkedHashSet<PointNode> forA = new LinkedHashSet<PointNode>();
+    	forA.add(b);
+    	forA.add(c);
+    	
+    	LinkedHashMap<PointNode, Set<PointNode>> lhm = new LinkedHashMap<PointNode, Set<PointNode>>();
+    	lhm.put(null, forA);
+   	
+    	return lhm;
+   	}
+	
+	public LinkedHashMap<PointNode, Set<PointNode>> LinkedHashMapNullEmpty()
+	{  	
+    	LinkedHashSet<PointNode> forA = new LinkedHashSet<PointNode>();
+    	
+    	LinkedHashMap<PointNode, Set<PointNode>> lhm = new LinkedHashMap<PointNode, Set<PointNode>>();
+    	lhm.put(null, forA);
+   	
+    	return lhm;
+   	}
+	
+	public LinkedHashMap<PointNode, Set<PointNode>> LinkedHashMapNullNull()
+	{  	
+    	LinkedHashMap<PointNode, Set<PointNode>> lhm = new LinkedHashMap<PointNode, Set<PointNode>>();
+    	lhm.put(null, null);
+   	
+    	return lhm;
+   	}
 }
