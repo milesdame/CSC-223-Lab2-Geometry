@@ -6,6 +6,7 @@
 package input.components.point;
 
 import java.util.Iterator;
+import utilities.math.MathUtilities;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class PointNodeDatabase {
 	 * @return the name of the point
 	 */
 	public String getName(PointNode point) {
-		return point.getName(); // also probably wrong for same reasons as above
+		return point.getName();
 	}
 	
 	/**
@@ -90,7 +91,7 @@ public class PointNodeDatabase {
 			
 			PointNode next = (PointNode)itr.next();
 			
-			if (next.getX() == x && next.getY() == y) {
+			if (MathUtilities.doubleEquals(next.getX(), x ) && MathUtilities.doubleEquals(next.getY(), y)) {
 				return next.getName();
 			}
 		}	

@@ -52,13 +52,12 @@ public class SegmentNodeDatabase {
 	 * @return int value of the total amount of undirected edges in the adj list
 	 */
 	public int numUndirectedEdges() {
+		//return _adjLists.keySet().size();
 		int sum = 0;
-
 		for (Set<PointNode> set : _adjLists.values()) {
 			sum = sum + set.size();
 		}
-
-		return sum;
+		return sum/2;
 	}
 
 	/**
@@ -67,12 +66,11 @@ public class SegmentNodeDatabase {
 	 * @param n2 - the second PointNode
 	 */
 	private void addDirectedEdge(PointNode n1, PointNode n2) {
-		if (!n1.equals(n2)) {
 			Set<PointNode> pointSet = new LinkedHashSet<PointNode>();
 			pointSet.add(n2);
-			_adjLists.put(n2, pointSet);
-		}
-	}
+			System.out.println("Adding directed edge " + n1 + " to " + n2);
+			_adjLists.put(n1, pointSet);
+				}
 
 	/**
 	 * Given two points, adds an undirected edge between them.
@@ -81,17 +79,20 @@ public class SegmentNodeDatabase {
 	 * @param n2 - the second PointNode (though order does not matter)
 	 */
 	public void addUndirectedEdge(PointNode n1, PointNode n2) {
-		if (!n1.equals(n2)) {
-			if (_adjLists.containsKey(n1) == true) { _adjLists.get(n1).add(n2);}
-			else {
-				this.addDirectedEdge(n1, n2);
-			}
-	
-			if (_adjLists.containsKey(n2) == true) { _adjLists.get(n2).add(n1);}
-			else {
-				this.addDirectedEdge(n2, n1);
-			}
+		if (n1 == null || n2 == null) return;
+		if (n1.equals(n2)) return;
+		
+		if (_adjLists.containsKey(n1) == true) { _adjLists.get(n1).add(n2);}
+		else {
+			this.addDirectedEdge(n1, n2);
 		}
+		
+		if (_adjLists.containsKey(n2) == true) { _adjLists.get(n2).add(n1);}
+		else {
+			this.addDirectedEdge(n2, n1);
+		}
+		System.out.println("==== LEAVING METHOD ====");
+
 	}
 
 	/**
@@ -145,13 +146,13 @@ public class SegmentNodeDatabase {
 			while (itr.hasNext()) {
 				PointNode point = (PointNode)itr.next();
 				SegmentNode node = new SegmentNode(entry.getKey(), point);
+				
 				set.add(node);
 			}
 		}
 
 		ArrayList<SegmentNode> list = new ArrayList(set);
 		return list;
-
 	}
 
 }

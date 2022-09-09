@@ -62,8 +62,7 @@ public class PointNodeDatabaseTest {
 	void testPut_null()
 	{
 		PointNodeDatabase pnd = new PointNodeDatabase();
-		assertTrue(pnd.put(null));
-		
+		pnd.put(null);
 		assertTrue(pnd.contains(null));
 		assertEquals(1, pnd._set.size());
 	}
@@ -73,8 +72,7 @@ public class PointNodeDatabaseTest {
 	{
 		PointNodeDatabase pnd = new PointNodeDatabase();
 		PointNode point = new PointNode(4.5, 5.6);
-		assertTrue(pnd.put(point));
-		
+		pnd.put(point);
 		assertTrue(pnd.contains(point));
 		assertEquals(1, pnd._set.size());
 	}
@@ -84,10 +82,9 @@ public class PointNodeDatabaseTest {
 	{
 		PointNodeDatabase pnd = new PointNodeDatabase();
 		PointNode point = new PointNode(4.5, 5.6);
-		assertTrue(pnd.put(point));
-		
-		assertFalse(pnd.put(point));
-		
+	
+		pnd.put(point);
+		pnd.put(point);
 		assertTrue(pnd.contains(point));
 		assertEquals(1, pnd._set.size());
 	}
@@ -233,7 +230,7 @@ public class PointNodeDatabaseTest {
 		
 		PointNodeDatabase pnd = new PointNodeDatabase(list);
 		
-		assertFalse(pnd.contains(2.2, 3.3));
+		assertTrue(pnd.contains(2.2, 3.3));
 	}
 	@Test
 	void testContainsDoubleDouble_infirst()
@@ -245,7 +242,7 @@ public class PointNodeDatabaseTest {
 		
 		PointNodeDatabase pnd = new PointNodeDatabase(list);
 		
-		assertFalse(pnd.contains(4.5, 5.6));
+		assertTrue(pnd.contains(4.5, 5.6));
 	}
 	@Test
 	void testContainsDoubleDouble_inmiddle()
@@ -257,7 +254,7 @@ public class PointNodeDatabaseTest {
 		
 		PointNodeDatabase pnd = new PointNodeDatabase(list);
 		
-		assertFalse(pnd.contains(2.2, 3.0));
+		assertTrue(pnd.contains(7.7, 3.0));
 	}
 	
 	/*
@@ -283,7 +280,7 @@ public class PointNodeDatabaseTest {
 		
 		PointNodeDatabase pnd = new PointNodeDatabase(list);
 		
-		assertEquals("a", point);
+		assertEquals("a", point.getName());
 	}
 	
 	@Test
@@ -296,7 +293,7 @@ public class PointNodeDatabaseTest {
 		
 		PointNodeDatabase pnd = new PointNodeDatabase(list);
 		
-		assertEquals(ANONYMOUS, point);
+		assertEquals(ANONYMOUS, point.getName());
 	}
 	
 	/*

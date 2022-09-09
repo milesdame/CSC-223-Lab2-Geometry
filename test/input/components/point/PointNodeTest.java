@@ -82,7 +82,7 @@ public class PointNodeTest {
 	}
 	
 	// getX
-	
+	@Test
 	void testGetX() {
 		PointNode node = new PointNode(1.0, 3.0);
 		
@@ -93,7 +93,7 @@ public class PointNodeTest {
 	}
 	
 	// getY
-	
+	@Test
 	void testGetY() {
 		PointNode node = new PointNode(1.0, 3.0);
 		
@@ -104,7 +104,7 @@ public class PointNodeTest {
 	}
 	
 	// getName
-	
+	@Test
 	void testGetName() {
 		PointNode node = new PointNode("name", 1.0, 3.0);
 		
@@ -115,7 +115,7 @@ public class PointNodeTest {
 	}
 	
 	// constructor(x,y)
-	
+	@Test
 	void testConstructor_x_y() {
 		PointNode node = new PointNode(1.0, 2.0);
 		
@@ -125,7 +125,7 @@ public class PointNodeTest {
 	}
 	
 	// constructor(name,x,y)
-	
+	@Test
 	void testConstructor_name_x_y() {
 		PointNode node = new PointNode("name", 1.0, 2.0);
 		
