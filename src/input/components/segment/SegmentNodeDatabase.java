@@ -109,7 +109,7 @@ public class SegmentNodeDatabase {
 	 */
 	public List<SegmentNode> asSegmentList() {
 		//Create an ArrayList to store the SegmentNodes
-		ArrayList<SegmentNode> list = new ArrayList();
+		ArrayList<SegmentNode> list = new ArrayList<SegmentNode>();
 
 		// Loop through each key
 		for(Map.Entry<PointNode, Set<PointNode>> entry : _adjLists.entrySet()) {
@@ -134,7 +134,7 @@ public class SegmentNodeDatabase {
 	 */
 	public List<SegmentNode> asUniqueSegmentList() {
 		//Create an ArrayList to store the SegmentNodes
-		LinkedHashSet<SegmentNode> set = new LinkedHashSet();
+		LinkedHashSet<SegmentNode> set = new LinkedHashSet<SegmentNode>();
 
 		// Loop through each key
 		for(Map.Entry<PointNode, Set<PointNode>> entry : _adjLists.entrySet()) {
