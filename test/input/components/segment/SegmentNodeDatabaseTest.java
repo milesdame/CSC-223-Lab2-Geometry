@@ -202,10 +202,7 @@ class SegmentNodeDatabaseTest
 
 		PointNode y = new PointNode("Y", 6, 3);
     	db.addUndirectedEdge(a, y);
-    	//System.out.println(db._adjLists.keySet()); FIX 
-    	System.out.println("====== THIS TEST ======");
     	assertEquals(11, db.numUndirectedEdges());
-    	System.out.println("====== THIS TEST ======");
 	}
 
 

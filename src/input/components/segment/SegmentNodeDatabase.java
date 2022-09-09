@@ -68,9 +68,8 @@ public class SegmentNodeDatabase {
 	private void addDirectedEdge(PointNode n1, PointNode n2) {
 			Set<PointNode> pointSet = new LinkedHashSet<PointNode>();
 			pointSet.add(n2);
-			System.out.println("Adding directed edge " + n1 + " to " + n2);
 			_adjLists.put(n1, pointSet);
-				}
+	}
 
 	/**
 	 * Given two points, adds an undirected edge between them.
@@ -91,7 +90,6 @@ public class SegmentNodeDatabase {
 		else {
 			this.addDirectedEdge(n2, n1);
 		}
-		System.out.println("==== LEAVING METHOD ====");
 
 	}
 
