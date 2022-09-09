@@ -1,5 +1,6 @@
 package input.components.segment;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -358,7 +359,7 @@ class SegmentNodeDatabaseTest
     	// Add segment but one point is null
     	db.addUndirectedEdge(c, b);
     	db.addUndirectedEdge(c, x);
-    	db.addUndirectedEdge(null, e);
+    	assertThrows(Exception.class, () -> {db.addUndirectedEdge(null, e);});
     	assertEquals(4, db.asUniqueSegmentList().size());
 	}
 	@Test
@@ -380,7 +381,7 @@ class SegmentNodeDatabaseTest
     	// Add segment but one point is null
     	db.addUndirectedEdge(c, b);
     	db.addUndirectedEdge(c, x);
-    	db.addUndirectedEdge(null, c);
+    	assertThrows(Exception.class, () -> {db.addUndirectedEdge(null, c);});
     	assertEquals(3, db.asUniqueSegmentList().size());
 	}
 	@Test
@@ -402,7 +403,7 @@ class SegmentNodeDatabaseTest
     	// Add segment but one point is null
     	db.addUndirectedEdge(c, b);
     	db.addUndirectedEdge(c, x);
-    	db.addUndirectedEdge(null, null);
+    	assertThrows(Exception.class, () -> {db.addUndirectedEdge(null, null);});
     	assertEquals(3, db.asUniqueSegmentList().size());
 	}
 	@Test
@@ -554,12 +555,32 @@ class SegmentNodeDatabaseTest
 	@Test
 	void testAsUniqueSegmentList_empty()
 	{
-		
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAsUniqueSegmentList_allunique()
 	{
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segments
+    	db.addUndirectedEdge(a, b);
+    	db.addUndirectedEdge(c, d);
+    	db.addUndirectedEdge(e, x);
+    	assertEquals(3, db.asUniqueSegmentList().size());
 	}
 	@Test
 	void testAsUniqueSegmentList_redundancy()
@@ -569,12 +590,44 @@ class SegmentNodeDatabaseTest
 	
 	@Test
 	void testAsUniqueSegmentList_nonEmptyAllUnique() {
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Add segments
+    	db.addUndirectedEdge(a, b);
+    	db.addUndirectedEdge(c, d);
+    	db.addUndirectedEdge(e, x);
+    	assertEquals(2, db.asUniqueSegmentList().size());
 	}
 	
 	@Test
 	void testAsUniqueSegmentList_nonEmptyNonUnique() {
-		
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	PointNode c = new PointNode("C", 4, 4);
+
+    	PointNode d = new PointNode("D", 0, 0);
+    	PointNode e = new PointNode("E", 6, 0);
+    	PointNode x = new PointNode("X", 3, 3);
+
+    	SegmentNodeDatabase db = new SegmentNodeDatabase();
+    	
+    	// Check if db is empty
+    	assertEquals(0, db.asUniqueSegmentList().size());
+    	
+    	// Add segments
+    	db.addUndirectedEdge(a, b);
+    	db.addUndirectedEdge(c, d);
+    	db.addUndirectedEdge(e, x);
+    	db.addUndirectedEdge(x, e);
+    	assertEquals(3, db.asUniqueSegmentList().size());
 	}
 	
 	
