@@ -20,6 +20,14 @@ class SegmentNodeDatabaseTest
 	private PointNode pt11 = new PointNode(1.0, 1.0);
 	private PointNode pt10 = new PointNode(1.0, 0.0);
 	
+	private PointNode a = new PointNode("A", 3, 6);
+	private PointNode b = new PointNode("B", 2, 4);
+	private PointNode c = new PointNode("C", 4, 4);
+
+	private PointNode d = new PointNode("D", 0, 0);
+	private PointNode e = new PointNode("E", 6, 0);
+	private PointNode x = new PointNode("X", 3, 3);
+	
     public SegmentNodeDatabase build()
     {
     	//      A                                 
@@ -30,13 +38,6 @@ class SegmentNodeDatabaseTest
     	// D_________E
     	//
 		//
-    	PointNode a = new PointNode("A", 3, 6);
-    	PointNode b = new PointNode("B", 2, 4);
-    	PointNode c = new PointNode("C", 4, 4);
-
-    	PointNode d = new PointNode("D", 0, 0);
-    	PointNode e = new PointNode("E", 6, 0);
-    	PointNode x = new PointNode("X", 3, 3);
 
     	SegmentNodeDatabase db = new SegmentNodeDatabase();
     	  	
@@ -60,10 +61,7 @@ class SegmentNodeDatabaseTest
     	//     / \                                
     	//    B___C                               
 		//
-    	PointNode a = new PointNode("A", 3, 6);
-    	PointNode b = new PointNode("B", 2, 4);
-    	PointNode c = new PointNode("C", 4, 4);
-
+    	
     	SegmentNodeDatabase db = new SegmentNodeDatabase();
     	  	
     	db.addUndirectedEdge(a, b);
@@ -72,12 +70,7 @@ class SegmentNodeDatabaseTest
     	
     	return db;
     }    
-    
-    
-    
-    
-    
-      
+
     /*
      * default constructor
      * just one test, check it fills _adjLists
@@ -429,81 +422,161 @@ class SegmentNodeDatabaseTest
 	}
 	
 	/*
-	 * addAdjecencyList - prob not all necessary
+	 * addAdjacencyList - prob not all necessary
 	 * point in, empty
-	 * point in, not empty no double
-	 * point in, not empty double
+	 * point in, not empty
 	 * point in , null
 	 * point not in, empty
-	 * point not in, not empty no double
-	 * point not in, not empty double
+	 * point not in, not empty
 	 * point not in , null
 	 * null, empty
-	 * null, not empty no double
-	 * null, not empty double
+	 * null, not empty 
 	 * null, null
 	 */
 	@Test
-	void testAddAdjacencyList_pointinempty()
+	void testAddAdjacencyList_pointin_empty()
 	{
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
+		db._adjLists.put(a, null);
 		
+		LinkedHashSet<PointNode> empty = new LinkedHashSet<PointNode>();
+		
+		db.addAdjacencyList(a, empty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> expected = new LinkedHashMap<PointNode, Set<PointNode>>();
+		expected.put(a, empty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> actual = db._adjLists;
+		
+		assertSame(expected, actual);
+	}
+	@Test
+	void testAddAdjacencyList_pointin_nonempty() {
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
+		db._adjLists.put(a, null);
+		
+		LinkedHashSet<PointNode> nonEmpty = new LinkedHashSet<PointNode>();
+		nonEmpty.add(b);
+		nonEmpty.add(c);
+		
+		db.addAdjacencyList(a, nonEmpty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> expected = new LinkedHashMap<PointNode, Set<PointNode>>();
+		expected.put(a, nonEmpty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> actual = db._adjLists;
+		
+		assertSame(expected, actual);
+	}
+	@Test
+	void testAddAdjacencyList_pointin_null()
+	{
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
+		db._adjLists.put(a, null);
+		
+		db.addAdjacencyList(a, null);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> expected = new LinkedHashMap<PointNode, Set<PointNode>>();
+		expected.put(a, null);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> actual = db._adjLists;
+		
+		assertSame(expected, actual);
+	}
+	@Test
+	void testAddAdjacencyList_pointnotin_empty()
+	{
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
+		LinkedHashSet<PointNode> empty = new LinkedHashSet<PointNode>();
+		
+		db.addAdjacencyList(a, empty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> expected = new LinkedHashMap<PointNode, Set<PointNode>>();
+		expected.put(a, empty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> actual = db._adjLists;
+		
+		assertSame(expected, actual);
+		
+	}
+
+	@Test
+	void testAddAdjacencyList_pointnotin_nonempty()
+	{
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
+		LinkedHashSet<PointNode> nonEmpty = new LinkedHashSet<PointNode>();
+		nonEmpty.add(b);
+		nonEmpty.add(c);
+		
+		db.addAdjacencyList(a, nonEmpty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> expected = new LinkedHashMap<PointNode, Set<PointNode>>();
+		expected.put(a, nonEmpty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> actual = db._adjLists;
+		
+		assertSame(expected, actual);
+		
+	}
+	@Test
+	void testAddAdjacencyList_pointnotin_null()
+	{
 		SegmentNodeDatabase db = new SegmentNodeDatabase();
 		
+		db.addAdjacencyList(a, null);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> expected = new LinkedHashMap<PointNode, Set<PointNode>>();
+		expected.put(a, null);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> actual = db._adjLists;
+		
+		assertSame(expected, actual);
 	}
 	@Test
-	void testAddAdjacencyList_pointinunique()
+	void testAddAdjacencyList_null_empty()
 	{
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
+		LinkedHashSet<PointNode> empty = new LinkedHashSet<PointNode>();
 		
+		db.addAdjacencyList(null, empty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> expected = new LinkedHashMap<PointNode, Set<PointNode>>();
+		expected.put(null, empty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> actual = db._adjLists;
+		
+		assertSame(expected, actual);
 	}
 	@Test
-	void testAddAdjacencyList_pointinredundant()
+	void testAddAdjacencyList_null_nonempty() 
 	{
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
+		LinkedHashSet<PointNode> nonEmpty = new LinkedHashSet<PointNode>();
+		nonEmpty.add(b);
+		nonEmpty.add(c);
 		
+		db.addAdjacencyList(null, nonEmpty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> expected = new LinkedHashMap<PointNode, Set<PointNode>>();
+		expected.put(null, nonEmpty);
+		
+		LinkedHashMap<PointNode, Set<PointNode>> actual = db._adjLists;
+		
+		assertSame(expected, actual);
 	}
 	@Test
-	void testAddAdjacencyList_pointinnull()
+	void testAddAdjacencyList_null_null()
 	{
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
 		
-	}
-	@Test
-	void testAddAdjacencyList_pointnotinempty()
-	{
+		db.addAdjacencyList(null, null);
 		
-	}
-	@Test
-	void testAddAdjacencyList_pointnotinunique()
-	{
+		LinkedHashMap<PointNode, Set<PointNode>> expected = new LinkedHashMap<PointNode, Set<PointNode>>();
+		expected.put(null, null);
 		
-	}
-	@Test
-	void testAddAdjacencyList_pointnotinredundant()
-	{
+		LinkedHashMap<PointNode, Set<PointNode>> actual = db._adjLists;
 		
-	}
-	@Test
-	void testAddAdjacencyList_pointnotinnull()
-	{
-		
-	}
-	@Test
-	void testAddAdjacencyList_nullempty()
-	{
-		
-	}
-	@Test
-	void testAddAdjacencyList_nullunique()
-	{
-		
-	}
-	@Test
-	void testAddAdjacencyList_nullredundant()
-	{
-		
-	}
-	@Test
-	void testAddAdjacencyList_nullnull()
-	{
-		
+		assertSame(expected, actual);
 	}
 	
 	/*
@@ -511,12 +584,7 @@ class SegmentNodeDatabaseTest
 	 * empty
 	 * not empty
 	 */
-	@Test
-	void testAsSegmentList_stuffin()
-	{
-		
-	}
-	
+
 	@Test
 	void testAsSegmentList_empty() {
 		SegmentNodeDatabase db = new SegmentNodeDatabase();
@@ -529,52 +597,55 @@ class SegmentNodeDatabaseTest
 	
 	@Test
 	void testAsSegmentList_nonEmpty() {
-//		PointNode pt1 = new PointNode(0.0, 0.0);
-//		PointNode pt2 = new PointNode(1.0, 1.0);
-//		PointNode pt3 = new PointNode(2.0, 2.0);
-//		Set<PointNode> pointSet = new LinkedHashSet<PointNode>();
-//		pointSet.add(pt2);
-//		pointSet.add(pt3);
-//		LinkedHashMap<PointNode, Set<PointNode>> map = new LinkedHashMap<PointNode, Set<PointNode>>();
-//		SegmentNodeDatabase db = new SegmentNodeDatabase(map);
-//		
-//		ArrayList<SegmentNode> expected = new ArrayList<SegmentNode>(); 
-//		ArrayList<SegmentNode> actual = db.asSegmentList();
-//		
-//		assertSame(expected, actual);
+		SegmentNodeDatabase db = this.babyBuild();
+		
+		ArrayList<SegmentNode> expected = new ArrayList<SegmentNode>();
+		expected.add(new SegmentNode(a, b));
+		expected.add(new SegmentNode(a, c));
+		expected.add(new SegmentNode(b, a));
+		expected.add(new SegmentNode(b, c));
+		expected.add(new SegmentNode(c, a));
+		expected.add(new SegmentNode(c, b));
+		
+		ArrayList<SegmentNode> actual = (ArrayList<SegmentNode>) db.asSegmentList();
+		
+		for (int i=0; i < expected.size(); i++) {
+			assertSame(expected.get(i), actual.get(i));
+		}
+		
 	}
 	
 	/*
 	 * asUniqueSegmentList
 	 * empty
-	 * not empty all unique
-	 * not empty some double
+	 * not empty
 	 */
 
 	@Test
 	void testAsUniqueSegmentList_empty()
 	{
+		SegmentNodeDatabase db = new SegmentNodeDatabase();
 		
+		List<SegmentNode> expected = new ArrayList<SegmentNode>(); 
+		List<SegmentNode> actual = db.asUniqueSegmentList();
+		
+		assertSame(expected, actual);
 	}
+
 	@Test
-	void testAsUniqueSegmentList_allunique()
+	void testAsUniqueSegmentList_nonempty()
 	{
+		SegmentNodeDatabase db = this.babyBuild();
 		
-	}
-	@Test
-	void testAsUniqueSegmentList_redundancy()
-	{
+		List<SegmentNode> expected = new ArrayList<SegmentNode>();
+		expected.add(new SegmentNode(a, b));
+		expected.add(new SegmentNode(a, c));
+		expected.add(new SegmentNode(b, c));
+		List<SegmentNode> actual = db.asUniqueSegmentList();
 		
-	}
-	
-	@Test
-	void testAsUniqueSegmentList_nonEmptyAllUnique() {
-		
-	}
-	
-	@Test
-	void testAsUniqueSegmentList_nonEmptyNonUnique() {
-		
+		for (int i=0; i < expected.size(); i++) {
+			assertSame(expected.get(i), actual.get(i));
+		}
 	}
 	
 	
@@ -649,3 +720,6 @@ class SegmentNodeDatabaseTest
     	return lhm;
    	}
 }
+
+
+
