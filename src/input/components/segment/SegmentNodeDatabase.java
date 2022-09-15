@@ -81,12 +81,12 @@ public class SegmentNodeDatabase {
 		if (n1 == null || n2 == null) return;
 		if (n1.equals(n2)) return;
 		
-		if (_adjLists.containsKey(n1) == true) { _adjLists.get(n1).add(n2);}
+		if (_adjLists.containsKey(n1))  _adjLists.get(n1).add(n2);
 		else {
 			this.addDirectedEdge(n1, n2);
 		}
 		
-		if (_adjLists.containsKey(n2) == true) { _adjLists.get(n2).add(n1);}
+		if (_adjLists.containsKey(n2))  _adjLists.get(n2).add(n1);
 		else {
 			this.addDirectedEdge(n2, n1);
 		}
@@ -118,8 +118,7 @@ public class SegmentNodeDatabase {
 			Iterator<PointNode> itr = values.iterator();
 			while (itr.hasNext()) {
 				PointNode point = (PointNode)itr.next();
-				SegmentNode node = new SegmentNode(entry.getKey(), point);
-				list.add(node);
+				list.add(new SegmentNode(entry.getKey(), point));
 			}
 		}
 
