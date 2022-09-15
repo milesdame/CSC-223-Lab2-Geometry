@@ -91,7 +91,7 @@ public class PointNodeDatabase {
 			
 			PointNode next = (PointNode)itr.next();
 			
-			if (MathUtilities.doubleEquals(next.getX(), x ) && MathUtilities.doubleEquals(next.getY(), y)) {
+			if (next.getX() == x && next.getY() == y) {
 				return next.getName();
 			}
 		}	
