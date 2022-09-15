@@ -35,11 +35,10 @@ public class SegmentNode
 		
 		SegmentNode that = (SegmentNode)obj;
 		
-		if((_point1.equals(that.getPoint1()) && _point2.equals(that.getPoint2())) || 
-				(_point1.equals(that.getPoint2()) && _point2.equals(that.getPoint1()))) {
-			return true;
-		}
+		return (_point1.equals(that.getPoint1()) && _point2.equals(that.getPoint2())) || 
+			   (_point1.equals(that.getPoint2()) && _point2.equals(that.getPoint1())); 
 		
-		else return false;
+		
+		
 	}
 }

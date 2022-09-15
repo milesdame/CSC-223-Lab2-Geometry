@@ -104,7 +104,7 @@ public class PointNodeDatabase {
 	 * @return the point
 	 */
 	public PointNode getPoint(PointNode point) {
-		return point; 
+		return getPoint(point.getX(), point.getY()); 
 	}
 	
 	/**
